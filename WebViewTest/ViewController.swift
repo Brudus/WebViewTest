@@ -34,12 +34,11 @@ class ViewController: UIViewController {
         let fileUrl = documentURL.appendingPathComponent("webview.html")
         
         if FileManager.default.fileExists(atPath: fileUrl.path) {
-            if let data = FileManager.default.contents(atPath: fileUrl.path) {
-                self.webView.loadFileURL(fileUrl, allowingReadAccessTo: documentURL)
-                //self.webView.load(data, mimeType: "text/html", characterEncodingName: "utf8", baseURL: fileUrl)
+            if let _ = FileManager.default.contents(atPath: fileUrl.path) {
+                let baseUrl = fileUrl.deletingLastPathComponent()
+                self.webView.loadFileURL(fileUrl, allowingReadAccessTo: baseUrl)
             }
         }
     }
-    
 }
 

@@ -18,11 +18,8 @@ class NetworkService {
     func getFile(path: String, completion: @escaping() -> Void) {
         let destination: DownloadRequest.DownloadFileDestination = {_, _ in
             let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            print(path)
+
             let fileURL = documentURL.appendingPathComponent(path)
-            
-            print(fileURL)
-            
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
